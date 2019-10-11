@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "cross-env TS_NODE_PROJECT=spec/tsconfig.json mocha --opts spec/default.opts \"src/operators/*.spec.ts\""
+        "test": "cross-env TS_NODE_PROJECT=spec/tsconfig.json mocha --opts spec/default.opts \"spec/*.spec.ts\""
     },
     "author": "",
     "license": "ISC",
