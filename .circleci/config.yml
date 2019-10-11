@@ -1,7 +1,6 @@
 version: 2.1
 jobs:
   build:
-    working-directory: ~/tmp
     docker: 
       - image: circle/node:7
     steps:
