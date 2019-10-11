@@ -6,9 +6,9 @@ import { delay } from 'rxjs/operators'
 //  uniqueEventCounter(250, buttonComperator, 2) => for click/double-click, when more than 1 button emit events.
 //  uniqueEventCounter(250, trueComperator, 2) => for click/double-click, when only 1 button emit events.
 
-export const trueComperator = (a: any, b: any) => true
-export const simpleComperator = (a: any, b: any) => a === b
-export const buttonComperator = (a: MouseEvent, b: MouseEvent) => a.srcElement === b.srcElement
+// const trueComperator = (a: any, b: any) => true
+const simpleComperator = (a: any, b: any) => a === b
+// const buttonComperator = (a: MouseEvent, b: MouseEvent) => a.srcElement === b.srcElement
 
 export const uniqueEventCounter = <T>(interval: number, comperator: Comperator<T> = simpleComperator, maxTimes?: number) => (
     source: Observable<T>
@@ -65,7 +65,7 @@ export const uniqueEventCounter = <T>(interval: number, comperator: Comperator<T
                     if (prevValue !== undefined) {
                         dispatch(prevValue, timesCounter)
                     }
-                    
+
                     timesCounter = 1
                     if (maxTimes === timesCounter) {
                         dispatch(value, timesCounter)
