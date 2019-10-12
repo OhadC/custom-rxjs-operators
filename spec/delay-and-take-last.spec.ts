@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { TestScheduler } from 'rxjs/testing'
 import { delayAndTakeLast, wrappedWithDelay } from '../src/operators/delay-and-take-last'
 
-describe('delay-and-take-last', () => {
+describe('delayAndTakeLast operator', () => {
     let testScheduler: TestScheduler
     beforeEach(() => {
         testScheduler = new TestScheduler((actual, expected) => {
@@ -10,7 +10,7 @@ describe('delay-and-take-last', () => {
         })
     })
 
-    it('should not delay events', () => {
+    it('should not delay events with no \'delay\' property', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -23,7 +23,7 @@ describe('delay-and-take-last', () => {
         })
     })
 
-    it('should emit delayed event when time end', () => {
+    it('should emit delayed event when delay time end', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -36,7 +36,7 @@ describe('delay-and-take-last', () => {
         })
     })
 
-    it("should throw delayed event if time don't end", () => {
+    it("should throw delayed event if emitting newer events that is not delayed", () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -49,7 +49,7 @@ describe('delay-and-take-last', () => {
         })
     })
 
-    it('should emit delayed event when time end and throw prev deayed events', () => {
+    it('should throw delayed event if emitting newer events that is delayed', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
