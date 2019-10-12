@@ -56,7 +56,7 @@ describe('unique-event-counter', () => {
         })
     })
 
-    it('should should use simple comperator be default', () => {
+    it('should use simple comperator by default', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -75,7 +75,7 @@ describe('unique-event-counter', () => {
         })
     })
 
-    it('should should respect comperator', () => {
+    it('should respect comperator', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
