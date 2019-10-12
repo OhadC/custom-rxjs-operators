@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { TestScheduler } from 'rxjs/testing'
 import { uniqueEventCounter } from '../src/operators/unique-event-counter'
 
-describe('unique-event-counter', () => {
+describe('uniqueEventCounter operator', () => {
     let testScheduler: TestScheduler
     beforeEach(() => {
         testScheduler = new TestScheduler((actual, expected) => {
@@ -10,7 +10,7 @@ describe('unique-event-counter', () => {
         })
     })
 
-    it('should register single event', () => {
+    it('should emit events immediately if maxTimes === 1', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -25,7 +25,22 @@ describe('unique-event-counter', () => {
         })
     })
 
-    it('should register double event', () => {
+    it('should emit events immediately if interval === 0', () => {
+        testScheduler.run(helpers => {
+            const { cold, expectObservable, expectSubscriptions } = helpers
+
+            const e1 = cold('-a-|')
+            const subs = '^--!'
+            const expected = '-a-|'
+
+            expectObservable(e1.pipe(uniqueEventCounter(0, undefined, 2))).toBe(expected, {
+                a: { value: 'a', times: 1 },
+            })
+            expectSubscriptions(e1.subscriptions).toBe(subs)
+        })
+    })
+
+    it('should emit events only when reaching maxTimes when getting same events', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -40,7 +55,7 @@ describe('unique-event-counter', () => {
         })
     })
 
-    it('should register event when other event is emmited', () => {
+    it('should emit prev event and not wait for maxTimes when getting different event', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -56,7 +71,7 @@ describe('unique-event-counter', () => {
         })
     })
 
-    it('should should use simple comperator be default', () => {
+    it('should use simple comperator by default', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -75,7 +90,7 @@ describe('unique-event-counter', () => {
         })
     })
 
-    it('should should respect comperator', () => {
+    it('should respect comperator', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
