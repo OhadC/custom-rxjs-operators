@@ -10,7 +10,7 @@ describe('delayAndTakeLast operator', () => {
         })
     })
 
-    it('should not delay events with no \'delay\' property', () => {
+    it("should not delay events with no 'delay' property", () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
@@ -36,7 +36,7 @@ describe('delayAndTakeLast operator', () => {
         })
     })
 
-    it("should throw delayed event if emitting newer events that is not delayed", () => {
+    it('should throw delayed event if emitting newer events that is not delayed', () => {
         testScheduler.run(helpers => {
             const { cold, expectObservable, expectSubscriptions } = helpers
 
