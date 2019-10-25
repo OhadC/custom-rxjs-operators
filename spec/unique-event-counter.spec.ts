@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { TestScheduler } from 'rxjs/testing'
-import { uniqueEventCounter } from '../src/operators/unique-event-counter'
+import { uniqueEventCounter } from '../src/unique-event-counter'
 
 describe('uniqueEventCounter operator', () => {
     let testScheduler: TestScheduler

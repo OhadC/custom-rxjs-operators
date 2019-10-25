@@ -14,8 +14,8 @@ export const uniqueEventCounter = <T>(interval: number, comperator: Comperator<T
     source: Observable<T>
 ) =>
     new Observable<DispatchedValue<T>>(observer => {
-        let prevSubscription: Subscription
-        let prevValue: T
+        let prevSubscription: Subscription | undefined
+        let prevValue: T | undefined
         let timesCounter = 0
 
         function onDestroy() {
@@ -40,7 +40,7 @@ export const uniqueEventCounter = <T>(interval: number, comperator: Comperator<T
             prevSubscription = of(0)
                 .pipe(delay(interval))
                 .subscribe(() => {
-                    dispatch(prevValue, timesCounter)
+                    dispatch(prevValue!, timesCounter)
                 })
         }
 
