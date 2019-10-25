@@ -2,12 +2,14 @@
     "name": "custom-rxjs-operators",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
     "scripts": {
         "circleci": "npm run test && npm audit && npm run style",
-        "test": "cross-env TS_NODE_PROJECT=spec/tsconfig.json mocha --opts spec/default.opts \"spec/*.spec.ts\"",
-        "style": "prettier --check \"**/*.ts\"",
-        "style:fix": "prettier --write \"**/*.ts\""
+        "test": "npm run build && mocha --opts spec/default.opts \"dist/spec/*.spec.js\"",
+        "style": "prettier --check \"src/**/*.ts\" \"spec/**/*.ts\"",
+        "style:fix": "prettier --write \"src/**/*.ts\" \"spec/**/*.ts\"",
+        "build": "tsc"
     },
     "author": "",
     "license": "ISC",

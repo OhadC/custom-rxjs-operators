@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { TestScheduler } from 'rxjs/testing'
-import { delayAndTakeLast, wrappedWithDelay } from '../src/operators/delay-and-take-last'
+import { delayAndTakeLast, wrappedWithDelay } from '../src/delay-and-take-last'
 
 describe('delayAndTakeLast operator', () => {
     let testScheduler: TestScheduler
