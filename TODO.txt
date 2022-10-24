@@ -1,0 +1,3 @@
+TODO operators:
+* scanFilter - scan that get predict, and filter by that.
+  (a: T, b: T) => boolean
