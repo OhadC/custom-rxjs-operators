@@ -23,7 +23,7 @@
         "cross-env": "^6.0.0",
         "mocha": "^6.2.1",
         "ts-node": "^8.4.1",
-        "tsconfig-paths": "^3.9.0",
+        "tsconfig-paths": "^3.10.1",
         "typescript": "^3.6.3",
         "prettier": "^1.18.2"
     }
